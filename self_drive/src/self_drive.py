@@ -14,7 +14,7 @@ class SelfDrive:
         
         turtle_vel = Twist()
          
-        if scan.ranges[0] < 0.3:
+        if scan.ranges[0] < 0.25 or scan.ranges[30] < 0.20:
             turtle_vel.linear.x = 0.0	
             turtle_vel.angular.z = 0.0
         else:
