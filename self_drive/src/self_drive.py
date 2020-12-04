@@ -11,12 +11,16 @@ class SelfDrive:
     def lds_callback(self, scan):
        
         print("scan[0]:", scan.ranges[0])
-        
+        print("scan[30]:", scan.ranges[30])
+        print("scan[330]:", scan.ranges[330])
         turtle_vel = Twist()
          
-        if scan.ranges[0] < 0.3:
+        if scan.ranges[0] < 0.25 or scan.ranges[30] < 0.20:
             turtle_vel.linear.x = 0.0	
-            turtle_vel.angular.z = 0.0
+            turtle_vel.angular.z = -1.8
+        elif scan.ranges[0] < 0.25 or scan.ranges[330] < 0.20:
+            turtle_vel.linear.x = 0.0
+            turtle_vel.angular.z = 1.8
         else:
             turtle_vel.linear.x = 0.18	
             turtle_vel.angular.z = 0.0
